@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TOTAL_COUNT = "total_count";
 
     private Counter counter = new Counter();
+    private Counter savedCounter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,37 @@ public class MainActivity extends AppCompatActivity {
         updateUI();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.save_menu: {
+                saveCounter();
+                return true;
+            }
+            case R.id.restore_menu: {
+                restoreCounter();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void saveCounter() {
+        savedCounter = counter;
+    }
+
+    public void restoreCounter() {
+        if (savedCounter != null) {
+            counter = savedCounter;
+        }
+        updateUI();
+    }
     /**
      * reset the counter
      * @param view -- the view that is clicked
