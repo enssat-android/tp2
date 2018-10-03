@@ -25,11 +25,11 @@
         />
 
     <Button
-        android:id="@+id/toast_button"
+        android:id="@+id/reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Toast"
-        android:onClick="toastMe"
+        android:text="Reset"
+        android:onClick="resetMe"
         android:layout_marginLeft="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintRight_toLeftOf="@+id/random_button"
         android:layout_marginRight="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/toast_button"
+        app:layout_constraintLeft_toRightOf="@+id/reset_button"
         android:layout_marginLeft="8dp"
         android:background="@color/buttonBackground" />
 
