@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.enssat.firstapp.counter.Counter;
 
@@ -48,11 +49,16 @@ public class MainActivity extends Activity {
     }
 
     public void resetCounter() {
-        // reset the counter
-        counter.reset();
+        if (counter.isReseted()) {
+            // Display a it's already done Toast
+            Toast.makeText(this, "It's already done !!!", Toast.LENGTH_SHORT).show();
+        } else {
+            // reset the counter
+            counter.reset();
 
-        // update the UI
-        updateUI();
+            // update the UI
+            updateUI();
+        }
     }
 
     public void countMe(View view) {

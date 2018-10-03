@@ -2,7 +2,9 @@ package fr.enssat.firstapp.counter;
 
 public class Counter {
 
-    int value = 0;
+    static final int RESET_VALUE = 0;
+
+    int value = RESET_VALUE;
 
     public int get() {
         return value;
@@ -13,6 +15,10 @@ public class Counter {
     }
 
     public void reset() {
-        value = 0;
+        value = RESET_VALUE;
+    }
+
+    public boolean isReseted() {
+        return value == RESET_VALUE;
     }
 }
