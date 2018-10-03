@@ -1,16 +1,15 @@
 package fr.enssat.firstapp;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import fr.enssat.firstapp.counter.Counter;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TOTAL_COUNT = "total_count";
 
@@ -28,15 +27,16 @@ public class MainActivity extends Activity {
      * @param view -- the view that is clicked
      */
     public void resetMe(View view){
-
-        AlertDialog resetDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.reset_dialog_title)
-                .setMessage(R.string.reset_dialog_message)
-                .setNegativeButton(R.string.reset_dialog_negative, null)
-                .setPositiveButton(R.string.reset_dialog_positive, (dialogInterface, i) -> resetCounter())
-                .create();
-
-        resetDialog.show();
+        if (counter.isInit()) {
+            Snackbar.make(view, "It's already done !!!", Snackbar.LENGTH_SHORT).show();
+        } else {
+            Counter saved = counter;
+            counter = new Counter();
+            updateUI();
+            Snackbar.make(view, "Reset done", Snackbar.LENGTH_LONG)
+                    .setAction("Undo", (v) -> {counter = saved; updateUI();})
+                    .show();
+        }
     }
 
     private void updateUI() {
@@ -46,19 +46,6 @@ public class MainActivity extends Activity {
 
         // Display the new value in the text view.
         showCountTextView.setText(Integer.toString(counter.get()));
-    }
-
-    public void resetCounter() {
-        if (counter.isReseted()) {
-            // Display a it's already done Toast
-            Toast.makeText(this, "It's already done !!!", Toast.LENGTH_SHORT).show();
-        } else {
-            // reset the counter
-            counter.reset();
-
-            // update the UI
-            updateUI();
-        }
     }
 
     public void countMe(View view) {

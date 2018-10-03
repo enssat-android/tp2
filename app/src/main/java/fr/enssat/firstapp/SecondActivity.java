@@ -1,12 +1,12 @@
 package fr.enssat.firstapp;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import java.util.Random;
 
-public class SecondActivity extends Activity {
+public class SecondActivity extends AppCompatActivity {
 
     private static final String TOTAL_COUNT = "total_count";
 
